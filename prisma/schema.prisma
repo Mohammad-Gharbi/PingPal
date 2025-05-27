@@ -21,6 +21,8 @@ model User {
   accounts      Account[]
   sessions      Session[]
 
+  monitors Monitor[]
+
   @@map("users")
 }
 
@@ -66,4 +68,34 @@ model VerificationRequest {
   updatedAt  DateTime @updatedAt
 
   @@unique([identifier, token])
+}
+
+model Monitor {
+  id        String   @id @default(cuid())
+  name      String
+  url       String
+  interval  Int      @default(5)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId String?
+  User   User?     @relation(fields: [userId], references: [id])
+  logs   PingLog[]
+}
+
+model PingLog {
+  id         String     @id @default(cuid())
+  status     PingStatus
+  responseMs Int?
+  checkedAt  DateTime   @default(now())
+
+  monitorId String?
+  Monitor   Monitor? @relation(fields: [monitorId], references: [id])
+}
+
+enum PingStatus {
+  UP
+  DOWN
+  TIMEOUT
 }
