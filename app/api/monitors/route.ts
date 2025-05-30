@@ -16,6 +16,7 @@ export async function POST(req: Request) {
 
   const user = await prisma.user.upsert({
     where: { email: session.user.email },
+    include: { monitors: true },
     update: {},
     create: {
       email: session.user.email,
@@ -45,5 +46,5 @@ export async function GET() {
     include: { monitors: true },
   })
 
-  return NextResponse.json
+  return NextResponse.json(user?.monitors ?? [])
 }
