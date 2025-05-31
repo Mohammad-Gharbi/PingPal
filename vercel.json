@@ -1,8 +1,0 @@
-{
-  "cron": [
-    {
-      "path": "/app/api/ping",
-      "schedule": "*/5 * * * *"
-    }
-  ]
-}
