@@ -1,8 +1,8 @@
-import { getServerSession } from "next-auth"
-import { authOptions } from "@/lib/auth"
+"use client"
+import { useSession } from "next-auth/react"
 
 export default async function Profile() {
-  const session = await getServerSession(authOptions)
+  const { data: session, status } = useSession()
   const user = session?.user
 
   return (
