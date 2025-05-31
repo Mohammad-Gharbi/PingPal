@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic"
-
 import { useSession } from "next-auth/react"
 
 export default function Profile() {

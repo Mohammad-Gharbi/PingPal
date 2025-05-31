@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic"
-
 import { RegisterForm } from "./form"
 
 export default function RegisterPage() {
