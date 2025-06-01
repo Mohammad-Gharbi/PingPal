@@ -98,13 +98,13 @@ export const LoginForm = () => {
 
       <div className="text-neutral-400 text-sm">
         You don’t have an account yet?
-        <Link
+        <a
           href="/register"
           className="dark:text-neutral-50 text-gray-800 ml-2"
           prefetch={false}
         >
           Sign up
-        </Link>
+        </a>
       </div>
     </div>
   )
