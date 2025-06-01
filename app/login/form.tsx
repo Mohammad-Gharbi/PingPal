@@ -101,6 +101,7 @@ export const LoginForm = () => {
         <Link
           href="/register"
           className="dark:text-neutral-50 text-gray-800 ml-2"
+          prefetch={false}
         >
           Sign up
         </Link>
