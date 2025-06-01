@@ -10,5 +10,4 @@ jobs:
 
     steps:
       - name: Call Vercel Ping API
-        run: |
-          curl -s -o /dev/null -w "%{http_code}" https://ping-status-omega.vercel.app/api/cron/ping
+        run: curl -s -o /dev/null -w "%{http_code}" "${{ secrets.PING_API_URL }}"
