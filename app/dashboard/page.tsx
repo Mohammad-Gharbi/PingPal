@@ -4,11 +4,13 @@ import { useEffect, useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useSession } from "next-auth/react"
+import Monitor from "@/components/Monitor"
+import { SiStatuspage } from "react-icons/si"
 
 interface Monitor {
-  id: String
-  name: String
-  url: String
+  id: string
+  name: string
+  url: string
 }
 
 export default function Dashboard() {
@@ -46,7 +48,10 @@ export default function Dashboard() {
 
   return (
     <main className="max-w-xl mx-auto py-10 px-4">
-      <h1 className="text-2xl font-bold mb-4">PingPal</h1>
+      <div className="text-2xl font-bold mb-4 flex flex-row justify-start items-center gap-2">
+        <SiStatuspage />
+        <p>PingStatus</p>
+      </div>
 
       <div className="flex flex-col sm:flex-row gap-2 mb-6">
         <Input
@@ -63,23 +68,17 @@ export default function Dashboard() {
           value={form.url}
           onChange={(e) => setForm({ ...form, url: e.target.value })}
         />
-        <Button onClick={addMonitor} className="px-4 py-2 rounded">
+        <Button
+          onClick={addMonitor}
+          className="px-4 py-2 rounded font-semibold"
+        >
           Add
         </Button>
       </div>
 
       <ul className="space-y-3">
-        {monitors.map((monitor) => (
-          <li key={monitor.id.toString()} className="border rounded px-4 py-2">
-            <strong>{monitor.name}</strong> —{" "}
-            <a
-              href={monitor.url.toString()}
-              className="text-blue-500"
-              target="_blank"
-            >
-              {monitor.url}
-            </a>
-          </li>
+        {monitors.map((monitor: Monitor) => (
+          <Monitor key={monitor.id} monitor={monitor} />
         ))}
       </ul>
     </main>
